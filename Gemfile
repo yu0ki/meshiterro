@@ -39,6 +39,10 @@ gem 'bootsnap', '>= 1.1.0', require: false
 # ユーザー認証用gem 'devise'
 gem 'devise' 
 
+# 画像投稿時に必要なgem. refileとrefile-mini_magick
+gem 'refile', require: 'refile/rails', github: 'manfe/refile'
+gem 'refile-mini_magick'
+
 group :development, :test do
   # Call 'byebug' anywhere in the code to stop execution and get a debugger console
   gem 'byebug', platforms: [:mri, :mingw, :x64_mingw]
