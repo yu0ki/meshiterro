@@ -1,24 +1,38 @@
-# README
+# Meshiterroについて
+ウェブアプリケーション「Meshiterro」は、画像投稿を行うファイルである。
+ユーザー認証を行い、どのユーザーがどの画像を投稿したのか分かるようにしている。
 
-This README would normally document whatever steps are necessary to get the
-application up and running.
+見本サイト：https://meshiterro-v3-sample.herokuapp.com/
 
-Things you may want to cover:
+# 主な機能
 
-* Ruby version
+## アカウント登録・ログイン・ログアウト
+gem 'devise' の機能を使用してユーザー認証をしている。
+各ページの上部にあるリンクから、新規アカウント登録、ログイン、ログアウトができる。
+新規アカウント登録成功すると、自動的にログイン状態になる。
+また、authenticate_userメソッドを使って、ログインしていないユーザーにはトップページ以外を表示しないようにしている。
+ユーザー情報は、モデルUserで管理する。
 
-* System dependencies
 
-* Configuration
 
-* Database creation
+## 画像投稿
+画像、店の名前、画像の説明を投稿できる。
+誰が投稿したのかという情報はcurrent_userメソッドから得ているので、投稿者が入力する必要はない。
+画像、店の名前にはバリデーションが設定されており、空地のまま投稿することはできない。
+空のまま投稿するとエラーメッセージが出る。
+投稿画像情報はモデルPostImageで管理する。
 
-* Database initialization
 
-* How to run the test suite
+## 投稿詳細表示、編集、削除
+これまでのアプリ（CARAVAN, Bookers）と同じく、各投稿の詳細ページおよび編集機能、削除機能がある。
+ただし、編集機能と削除機能は、その投稿を作成したユーザーにのみ使用できる。
 
-* Services (job queues, cache servers, search engines, etc.)
+## 各投稿に対するコメント投稿
+画像投稿とだいたい同じ要領で、各投稿に対してコメントを書くことができる。
+コメントに関するルーティングは、画像投稿に関するルーティングとネスとしている。（コメントのほうが子要素）
+PostCommentモデルで管理。
 
-* Deployment instructions
+## 各投稿に対するいいね
+ハートマークを押すことで、いいねしたり取り消したりできる。
+Favoriteモデルで管理。
 
-* ...
